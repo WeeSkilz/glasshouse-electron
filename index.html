@@ -1,0 +1,70 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Electron boilerplate</title>
+		<link rel="stylesheet" href="index.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
+	</head>
+	<body>
+		<script src="https://code.jquery.com/jquery-2.2.2.min.js" integrity="sha256-36cp2Co+/62rEAAYHLmRCPIych47CvdM+uTBJwSzWjI=" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+			<header>
+				<h1>GlassHouse</h1>
+			</header>
+			<section class="main">
+				<div class="container">
+					<h4>Sorry, I'm not a designer</h4>
+
+					<h4>We track a few things:</h4>
+					<br>
+					<ul>
+						<li><h4>Temperature (In 5 different forms)</h4></li>
+						<li><h4>Humidity</h4></li>
+						<li><h4>Light Level</h4></li>
+					</ul>
+				</div>
+			</section>
+			<footer class="page-footer blue">
+	          <div class="container">
+	            <div class="row">
+	              <div class="col l6 s12">
+	                <h5 class="white-text">More Information</h5>
+	                <p class="grey-text text-lighten-4">Find out about who we are, and how you can contribute.</p>
+	              </div>
+	              <div class="col l4 offset-l2 s12">
+	                <h5 class="white-text">Links</h5>
+	                <ul>
+	                  <li><a class="grey-text text-lighten-3" href="https://github.com/WeeSkilz/glasshouse">Project GitHub</a></li>
+	                  <li><a class="grey-text text-lighten-3" href="https://connorl.com">Connor</a></li>
+	                  <li><a class="grey-text text-lighten-3" href="https://github.com/LewisMazzei">Lewis</a></li>
+	                </ul>
+	              </div>
+	            </div>
+	          </div>
+	          <div class="footer-copyright">
+	            <div class="container">
+	            &copy; 2016 GlassHouse
+	            <a class="grey-text text-lighten-4 right" href="https://github.com/WeeSkilz/glasshouse">GitHub</a>
+	            </div>
+	          </div>
+	        </footer>
+	        <script type="text/javascript">
+	        	var request = require('request');
+
+	        	request('http://54.187.183.77/api/0/dankmeme/all', function (error, response, body) {
+	        	  if (!error && response.statusCode == 200) {
+	        	  	var bodyJson = JSON.parse(body);
+	        	    $('.main .container').append('<ul id="weather"></ul>');
+	        	    $('#weather').append('<li><h4>Current Conditions:</h4></li>');
+	        	    $('#weather').append('<li><h5>Temperature: ' + bodyJson.temperature.centigrade + 'ºC</h5></li>');
+	        	    $('#weather').append('<li><h5>Humidity: ' + bodyJson.humidity + '%</h5></li>');
+	        	    $('#weather').append('<li><h5>Light: ' + bodyJson.light + ' Lux</h5></li>');
+	        	    console.log(body);
+	        	  } else {
+	        	  	console.log(error);
+	        	  }
+	        	})
+	        </script>
+	</body>
+</html>
